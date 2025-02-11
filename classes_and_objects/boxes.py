@@ -1,5 +1,5 @@
-WHITE = (255,255,255)
-
+# These are Classes that help with on screen graphics
+"""
 
 class Text_box():
 
@@ -30,3 +30,5 @@ class Image_box():
 
     def draw_image(self):
         screen_window.blit(self.image, (self.x, self.y))
+
+"""
