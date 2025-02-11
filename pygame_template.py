@@ -2,6 +2,7 @@ import pygame, sys
 import random
 import math
 import os
+from os.path import join
 from random import randint as rnd
 from time import sleep as slp
 
@@ -24,7 +25,6 @@ window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 def draw(window):
     
     window.fill(WHITE) # 15
-
     pygame.display.update()
 
 def main(window): # MAIN FUNCTION
