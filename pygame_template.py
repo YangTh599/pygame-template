@@ -6,20 +6,16 @@ from os.path import join
 from random import randint as rnd
 from time import sleep as slp
 
-pygame.init()
-pygame.display.set_caption("Pygame Window Caption is up here") # Window Caption
+from colors import *
+from pygame_config import *
 
-#CONSTANTS
+def init_game():
+    pygame.init()
+    pygame.display.set_caption("Pygame Window Caption is up here") # Window Caption
 
-WHITE = (255,255,255)
-BLACK = (0,0,0)
-GREEN = (20,140,25)
-FPS = 60
-
-SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
-
-#Pygame Window
-window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    #Pygame Window
+    window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+    return window
 
 # Draw Function to update graphics
 def draw(window):
@@ -27,7 +23,15 @@ def draw(window):
     window.fill(WHITE) # 15
     pygame.display.update()
 
-def main(window): # MAIN FUNCTION
+def handle_events():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: # QUIT
+            return False
+    
+    return True
+
+def main(): # MAIN FUNCTION
+    window = init_game()
     clock = pygame.time.Clock()
 
     run = True
@@ -35,10 +39,11 @@ def main(window): # MAIN FUNCTION
 
         clock.tick(FPS) # FPS Tick
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: # QUIT
-                run = False
-                break
+        run = handle_events()
+        # for event in pygame.event.get():
+        #     if event.type == pygame.QUIT: # QUIT
+        #         run = False
+        #         break
         
         draw(window) # UPDATES SCREEN
 
@@ -47,5 +52,5 @@ def main(window): # MAIN FUNCTION
     quit()
 
 if __name__ == "__main__": 
-    main(window)
+    main()
 
