@@ -4,14 +4,14 @@ import math
 import os
 from os.path import join
 from random import randint as rnd
-from time import sleep as slp
+from pygame.time import delay as slp
 
 from colors import *
 from pygame_config import *
 
 def init_game():
     pygame.init()
-    pygame.display.set_caption("Pygame Window Caption is up here") # Window Caption
+    pygame.display.set_caption(PYGAME_CAPTION) # Window Caption
 
     #Pygame Window
     window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
