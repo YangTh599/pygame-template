@@ -10,15 +10,21 @@ pygame.init()
 
 class Text_box():
 
-    def __init__(self, x, y, width, height, text, text_size = 24):
+    def __init__(self, window, x, y, width, height, text, font="Comic Sans MS",text_size = 24, draw_rect = True):
         self.rect = pygame.Rect(x,y,width,height)
+        self.window = window
+
         self.x = x
         self.y = y
         self.height = height
         self.width = width
+
+        self.draw_rect = draw_rect
+
         self.text = text
         self.text_size = text_size
-        self.text_font = pygame.font.SysFont('Comic Sans MS', text_size)
+        self.font = font
+        self.text_font = pygame.font.SysFont(font, text_size)
 
     def change_font(self, new_font):
         if (new_font[-4:] == ".ttf" or new_font[-4:] == ".otf"):
@@ -26,11 +32,20 @@ class Text_box():
         else:
             self.text_font = pygame.font.SysFont(new_font, self.text_size)
 
+    def italicize(self, italicize = True):
+        if not (self.font[-4:] == ".ttf" or self.font[-4:] == ".otf"):
+            self.text_font = pygame.font.SysFont(self.font, self.text_size, italic=italicize)
+    
+    def bolden(self, boldize = True):
+        if not (self.font[-4:] == ".ttf" or self.font[-4:] == ".otf"):
+            self.text_font = pygame.font.SysFont(self.font, self.text_size, bold=boldize)
+
     def draw_textbox(self):
-        img = self.text_font.render(self.text, True, WHITE)
-        pygame.draw.rect(window, (50, 200, 50), self.rect)
-        text_rect = img.get_rect(center=self.rect.center)
-        window.blit(img, text_rect)
+        text = self.text_font.render(self.text, True, WHITE)
+        if self.draw_rect:
+            pygame.draw.rect(self.window, (50, 200, 50), self.rect)
+        text_rect = text.get_rect(center=self.rect.center)
+        self.window.blit(text, text_rect)
 
 class Image_box():
 

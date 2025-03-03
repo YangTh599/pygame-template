@@ -35,6 +35,11 @@ def main(): # MAIN FUNCTION
     clock = pygame.time.Clock()
 
     run = True
+    # ADD ALL OBJECTS/CLASSES BELOW HERE
+
+
+    
+    # ADD ALL OBJECTS/CLASSES ABOVE HERE
     while run: # run set to true, program runs while run is true.
 
         clock.tick(FPS) # FPS Tick
