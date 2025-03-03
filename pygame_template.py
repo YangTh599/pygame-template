@@ -55,7 +55,11 @@ def main(): # MAIN FUNCTION
 
     pygame.quit()
     quit()
+# ADD CLASSES HERE
 
+
+
+# ADD CLASSES ABOVE
 if __name__ == "__main__": 
     main()
 
