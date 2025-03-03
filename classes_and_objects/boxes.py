@@ -1,4 +1,7 @@
 # These are Classes that help with on screen graphics
+
+#font = pygame.font.Font("C:\\Windows/Users/YangTh599/Documents/GitHub/pygame-template/fonts/MoreSugar-Regular.ttf") # MORESUGAR Font
+
 """
 
 import pygame
@@ -7,14 +10,21 @@ pygame.init()
 
 class Text_box():
 
-    def __init__(self, x, y, width, height, text):
+    def __init__(self, x, y, width, height, text, text_size = 24):
         self.rect = pygame.Rect(x,y,width,height)
         self.x = x
         self.y = y
         self.height = height
         self.width = width
         self.text = text
-        self.text_font = pygame.font.SysFont('Comic Sans MS', 18)
+        self.text_size = text_size
+        self.text_font = pygame.font.SysFont('Comic Sans MS', text_size)
+
+    def change_font(self, new_font):
+        if (new_font[-4:] == ".ttf" or new_font[-4:] == ".otf"):
+            self.text_font = pygame.font.Font(new_font, self.text_size)
+        else:
+            self.text_font = pygame.font.SysFont(new_font, self.text_size)
 
     def draw_textbox(self):
         img = self.text_font.render(self.text, True, WHITE)
