@@ -8,6 +8,7 @@ from pygame.time import delay as slp
 
 from colors import *
 from pygame_config import *
+import classes_and_objects.shapes as shapes
 
 def init_game():
     pygame.init()
@@ -33,13 +34,12 @@ def handle_events():
 def main(): # MAIN FUNCTION
     window = init_game()
     clock = pygame.time.Clock()
-
-    run = True
     # ADD ALL OBJECTS/CLASSES BELOW HERE
 
 
     
     # ADD ALL OBJECTS/CLASSES ABOVE HERE
+    run = True
     while run: # run set to true, program runs while run is true.
 
         clock.tick(FPS) # FPS Tick
@@ -50,8 +50,9 @@ def main(): # MAIN FUNCTION
         #         run = False
         #         break
         
-        draw(window) # UPDATES SCREEN
 
+        
+        draw(window) # UPDATES SCREEN
 
     pygame.quit()
     quit()

@@ -1,5 +1,16 @@
 # COLOR CONSTANTS
 
+#RANDOM COLOR GENERATOR
+
+from random import randint
+
+def rand_color():
+    r, g, b = randint(0,255), randint(0,255) ,randint(0,255)
+
+    color = (r,g,b)
+
+    return color
+
 #BLACK AND WHITE
 WHITE = (255,255,255)
 BLACK = (0,0,0)
