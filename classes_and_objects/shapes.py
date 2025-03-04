@@ -1,7 +1,5 @@
 import pygame
 
-pygame.init()
-
 # SHAPE CLASSES
 
 class Line():
@@ -26,6 +24,11 @@ class Rectangle():
 
     def draw(self):
         pygame.draw.rect(self.window, self.color, self.rect, self.line_width)
+
+class Square(Rectangle):
+
+    def __init__(self, window, color, x, y, side_length = 1, line_width = 0):
+        super().__init__(window, color, x, y, side_length, side_length, line_width)
 
 class Circ():
     
