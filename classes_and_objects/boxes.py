@@ -2,8 +2,7 @@
 
 #font = pygame.font.Font("C:\\Windows/Users/YangTh599/Documents/GitHub/pygame-template/fonts/MoreSugar-Regular.ttf") # MORESUGAR Font
 
-"""
-
+from colors import *
 import pygame
 from os.path import join
 pygame.init()
@@ -53,7 +52,8 @@ class Text_box():
 
 class Image_box():
 
-    def __init__(self, x, y, width, height, image):
+    def __init__(self,window, x, y, width, height, image):
+        self.window = window
         self.rect = pygame.Rect(x,y,width,height)
         self.x = x
         self.y = y
@@ -62,6 +62,5 @@ class Image_box():
         self.image = pygame.image.load(join('assets','images',image))
 
     def draw_image(self):
-        window.blit(self.image, (self.x, self.y))
+        self.window.blit(self.image, (self.x, self.y))
 
-"""

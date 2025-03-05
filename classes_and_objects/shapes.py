@@ -2,20 +2,20 @@ import pygame
 from colors import *
 
 # AMONG US MAKER
-def draw_amongus(window, color, x, y, flip= False):
+def draw_amongus(window, color, x, y, scale=1, flip= False):
 
         if flip:
-            amogus_body = Ellipse(window,color, x , y,300,400)
-            amogus_legs1 = Rectangle(window, color, x+ 50, y+ 300,50,150)
-            amogus_legs2 = Rectangle(window, color, x+ 200, y + 300,50,150)
-            amogus_backpack = Rectangle(window, color, x + 275, y + 50,75,300)
-            glass = Ellipse(window, CC_BLUE, x-50, y+50 ,300,50)
+            amogus_body = Ellipse(window,color, x * scale, y * scale,300 *scale,400 * scale)
+            amogus_legs1 = Rectangle(window, color, (x+ 50)* scale, (y+ 300)* scale,50* scale,150* scale)
+            amogus_legs2 = Rectangle(window, color, (x+ 200)* scale, (y + 300)* scale,50* scale,150* scale)
+            amogus_backpack = Rectangle(window, color, (x + 275)* scale, (y + 50)* scale,75* scale,300* scale)
+            glass = Ellipse(window, CC_BLUE, (x-50)* scale, (y+50)* scale ,300* scale,50* scale)
         else:
-            amogus_body = Ellipse(window,color, x , y,300,400)
-            amogus_legs1 = Rectangle(window, color, x+ 50, y+ 300,50,150)
-            amogus_legs2 = Rectangle(window, color, x+ 200, y + 300,50,150)
-            amogus_backpack = Rectangle(window, color, x - 50, y + 50,75,300)
-            glass = Ellipse(window, CC_BLUE, x+50, y+50 ,300,50)
+            amogus_body = Ellipse(window,color, x* scale , y* scale,300* scale,400* scale)
+            amogus_legs1 = Rectangle(window, color, (x+ 50)* scale, (y+ 300)* scale,50* scale,150* scale)
+            amogus_legs2 = Rectangle(window, color, (x+ 200)* scale, (y + 300)* scale,50* scale,150* scale)
+            amogus_backpack = Rectangle(window, color, (x - 50)* scale, (y + 50)* scale,75* scale,300* scale)
+            glass = Ellipse(window, CC_BLUE, (x+50)* scale, (y+50)* scale ,300* scale,50* scale)
 
         amongus = [amogus_body,amogus_backpack,amogus_legs1,amogus_legs2,glass]
 
