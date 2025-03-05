@@ -20,8 +20,12 @@ def init_game():
 
 # Draw Function to update graphics
 def draw(window):
-    
+    #BACKGROUND
     window.fill(WHITE) # 15
+
+    #FOREGROUND
+    
+
     pygame.display.update()
 
 def handle_events():

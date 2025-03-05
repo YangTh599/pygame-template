@@ -1,4 +1,25 @@
 import pygame
+from colors import *
+
+# AMONG US MAKER
+def draw_amongus(window, color, x, y, flip= False):
+
+        if flip:
+            amogus_body = Ellipse(window,color, x , y,300,400)
+            amogus_legs1 = Rectangle(window, color, x+ 50, y+ 300,50,150)
+            amogus_legs2 = Rectangle(window, color, x+ 200, y + 300,50,150)
+            amogus_backpack = Rectangle(window, color, x + 275, y + 50,75,300)
+            glass = Ellipse(window, CC_BLUE, x-50, y+50 ,300,50)
+        else:
+            amogus_body = Ellipse(window,color, x , y,300,400)
+            amogus_legs1 = Rectangle(window, color, x+ 50, y+ 300,50,150)
+            amogus_legs2 = Rectangle(window, color, x+ 200, y + 300,50,150)
+            amogus_backpack = Rectangle(window, color, x - 50, y + 50,75,300)
+            glass = Ellipse(window, CC_BLUE, x+50, y+50 ,300,50)
+
+        amongus = [amogus_body,amogus_backpack,amogus_legs1,amogus_legs2,glass]
+
+        return amongus
 
 # SHAPE CLASSES
 
@@ -42,6 +63,13 @@ class Circ():
     def draw(self):
         pygame.draw.circle(self.window, self.color, self.center, self.r, self.width)
 
+class Ellipse(Rectangle):
+
+    def __init__(self, window, color, x, y, width=1, length=1, line_width = 0):
+        super().__init__(window, color, x, y, width, length, line_width)
+
+    def draw(self):
+        pygame.draw.ellipse(self.window, self.color, self.rect, self.line_width)
 
 class Polygon():
 
