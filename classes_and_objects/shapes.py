@@ -24,8 +24,11 @@ def draw_amongus(window, color, x, y, scale=1, flip= False):
 # SHAPE CLASSES
 
 class Shape():
-
+    """Shapes class, barebones for any shape to be made"""
     def __init__(self, window, color, width=0):
+        """window: The screen or window the shape is meant to be drawn on
+        color: tuple of RGB Values (0-255,0-255,0-255)
+        width: This value determines whether the shape has a border | default =0 for no border, filled in"""
         self.window = window
         self.color = color
         self.width = width
