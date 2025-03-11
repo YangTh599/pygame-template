@@ -9,6 +9,7 @@ from pygame.time import delay as slp
 from colors import *
 from pygame_config import *
 import classes_and_objects.shapes as shapes
+import classes_and_objects.boxes as boxes
 
 def init_game():
     pygame.init()

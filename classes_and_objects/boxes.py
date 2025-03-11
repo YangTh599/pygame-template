@@ -9,7 +9,7 @@ pygame.init()
 
 class Text_box():
 
-    def __init__(self, window, x, y, width, height, text, font="Comic Sans MS",text_size = 24, draw_rect = True, centered = True):
+    def __init__(self, window, x, y, width, height, text, font="Comic Sans MS",text_size = 24, draw_rect = False, centered = False):
         self.rect = pygame.Rect(x,y,width,height)
         self.window = window
 
@@ -32,6 +32,8 @@ class Text_box():
         else:
             self.text_font = pygame.font.SysFont(new_font, self.text_size)
 
+        self.font = new_font
+
     def italicize(self, italicize = True):
         if not (self.font[-4:] == ".ttf" or self.font[-4:] == ".otf"):
             self.text_font = pygame.font.SysFont(self.font, self.text_size, italic=italicize)
@@ -49,6 +51,10 @@ class Text_box():
             self.window.blit(text, text_rect)
         else:
             self.window.blit(text, [self.x,self.y])
+
+    def draw_text(self):
+        text = self.text_font.render(self.text, True, WHITE)
+        self.window.blit(text, [self.x,self.y])
 
 class Image_box():
 
