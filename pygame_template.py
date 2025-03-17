@@ -20,12 +20,13 @@ def init_game():
     return window
 
 # Draw Function to update graphics
-def draw(window):
+def draw(window,box):
     #BACKGROUND
     window.fill(WHITE) # 15
+    
 
     #FOREGROUND
-    
+    box.draw_textbox()
 
     pygame.display.update()
 
@@ -41,7 +42,7 @@ def main(): # MAIN FUNCTION
     clock = pygame.time.Clock()
     # ADD ALL OBJECTS/CLASSES BELOW HERE
 
-
+    box = boxes.Text_box(window, 200,200,200,50,"WEEEEEEEE",text_color=BLACK, rotation = 50)
     
     # ADD ALL OBJECTS/CLASSES ABOVE HERE
     run = True
@@ -53,9 +54,10 @@ def main(): # MAIN FUNCTION
         
 
         
-        draw(window) # UPDATES SCREEN
+        draw(window,box) # UPDATES SCREEN
 
     pygame.quit()
+    sys.quit()
     quit()
 # ADD CLASSES HERE
 
