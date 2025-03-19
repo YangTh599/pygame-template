@@ -43,6 +43,7 @@ def handle_events():
     return True
 
 def main(): # MAIN FUNCTION
+    """Main Function : main"""
     window = init_game()
     clock = pygame.time.Clock()
     # ADD ALL OBJECTS/CLASSES BELOW HERE
