@@ -23,7 +23,7 @@ def draw_amongus(window:pygame.display, color:tuple, x: int, y : int, scale=1, f
 
 # SHAPE CLASSES
 
-class Shape():
+class Shape(): # SHAPES PARENT CLASS
     """Shapes class, barebones for any shape to be made"""
     def __init__(self, window:pygame.display, color:tuple, width=0):
         """window: The screen or window the shape is meant to be drawn on
@@ -47,8 +47,8 @@ class Shape():
         """Changes the width of the shape, 0= filled in shape, input bigger than 0 will give the shape a border of that int
         new_width: int determines border width of the shape. 0 for filled in shape """
         self.width = new_width
-
-class Line(Shape):
+# ----------
+class Line(Shape): # LINE CLASS
     """A class for a simple line"""
     def __init__(self,window:pygame.display, color:tuple, start_coord, end_coord, width=1):
         """window: The screen or window the shape is meant to be drawn on
@@ -61,11 +61,27 @@ class Line(Shape):
         self.start = start_coord
         self.end = end_coord
 
+    def move_right(self, displacement):
+        self.start[0] + displacement
+        self.end[0] + displacement
+    
+    def move_left(self, displacement):
+        self.start[0] - displacement
+        self.end[0] - displacement
+
+    def move_up(self, displacement):
+        self.start[1] - displacement
+        self.end[1] - displacement
+
+    def move_down(self, displacement):
+        self.start[1] + displacement
+        self.end[1] + displacement
+
     def draw(self):
         """Draws the line on the screen"""
         pygame.draw.line(self.window,self.color, self.start, self.end, self.width)
-
-class Rectangle(Shape):
+# ----------
+class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
     """A class to draw rectangular shape"""
     def __init__(self, window:pygame.display, color:tuple, x:int, y:int ,side_width=1, side_length=1, line_width=0):
         """window: The screen or window the shape is meant to be drawn on
@@ -95,10 +111,22 @@ class Rectangle(Shape):
     def change_side_length(self, new_length:int):
         self.change_side_lengths(self.side_width, new_length)
 
+    def change_pos(self,new_x:int,new_y:int):
+        self.x = new_x
+        self.y = new_y
+
+        self.rect = pygame.Rect(new_x,new_y,self.side_width,self.side_length)
+
+    def change_x_pos(self, new_x:int):
+        self.change_pos(new_x, self.y)
+    
+    def change_y_pos(self, new_y:int):
+        self.change_pos(self.x, new_y)
+
     def draw(self):
         pygame.draw.rect(self.window, self.color, self.rect, self.width)
-
-class Square(Rectangle):
+# ----------
+class Square(Rectangle): # SQUARE CLASS << RECTANGLE << SHAPES
 
     def __init__(self, window, color, x, y, side_length = 1, line_width = 0):
         super().__init__(window, color, x, y, side_length, side_length, line_width)
@@ -111,8 +139,8 @@ class Square(Rectangle):
 
     def change_side_length(self, new_length:int):
         self.change_side_lengths(new_length, new_length)
-
-class Circ(Shape):
+# ----------
+class Circ(Shape): # CIRCLE CLASS << SHAPES
     
     def __init__(self, window, color, center_coords, radius, width=0):
         super().__init__(window,color, width)
@@ -137,21 +165,36 @@ class Circ(Shape):
 
     def draw(self):
         pygame.draw.circle(self.window, self.color, self.center, self.r, self.width)
-
-class Ellipse(Rectangle):
+# ----------
+class Ellipse(Rectangle): # ELLIPSE CLASS << RECTANGLE << SHAPES
 
     def __init__(self, window, color, x, y, side_width=1, side_length=1, line_width = 0):
         super().__init__(window, color, x, y, side_width, side_length, line_width)
 
     def draw(self):
         pygame.draw.ellipse(self.window, self.color, self.rect, self.width)
-
-class Polygon(Shape):
+# ----------
+class Polygon(Shape): # POLYGON CLASS << SHAPES
 
     def __init__(self,window, color, points, width=0):
         super().__init__(window,color,width)
         self.points = points
 
+    def move_right(self, displacement):
+        for coords in self.points:
+            coords[0] + displacement
+    
+    def move_left(self, displacement):
+        for coords in self.points:
+            coords[0] - displacement
+
+    def move_up(self, displacement):
+        for coords in self.points:
+            coords[1] - displacement
+
+    def move_down(self, displacement):
+        for coords in self.points:
+            coords[1] + displacement
 
     def draw(self):
         pygame.draw.polygon(self.window,self.color,self.points,self.width)
