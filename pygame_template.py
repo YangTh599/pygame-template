@@ -12,7 +12,9 @@ import classes_and_objects.shapes as shapes
 import classes_and_objects.boxes as boxes
 
 def init_game():
+    """Initiates Pygame, Pygame.font, and sets the Screen window and caption"""
     pygame.init()
+    pygame.font.init()
     pygame.display.set_caption(PYGAME_CAPTION) # Window Caption
 
     #Pygame Window
@@ -20,7 +22,8 @@ def init_game():
     return window
 
 # Draw Function to update graphics
-def draw(window,box):
+def draw(window):
+    """DRAW FUNCTION | allows screen graphics to be added"""
     #BACKGROUND
     window.fill(WHITE) # 15
     
@@ -28,9 +31,11 @@ def draw(window,box):
     #FOREGROUND
     
 
+    #UPDATE DISPLAY
     pygame.display.update()
 
 def handle_events():
+    """Handles any pygame event such as key input"""
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # QUIT
             return False
