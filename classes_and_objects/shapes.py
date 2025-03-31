@@ -61,21 +61,33 @@ class Line(Shape): # LINE CLASS
         self.start = start_coord
         self.end = end_coord
 
-    def move_right(self, displacement):
-        self.start[0] + displacement
-        self.end[0] + displacement
+    def new_start_points(self,new_x, new_y):
+        self.start = [new_x, new_y]
+
+    def new_end_points(self,new_x, new_y):
+        self.end = [new_x, new_y]
+
+    def move_right(self, displacement:int):
+        self.new_start_points(self.start[0] + displacement, self.start[1])
+        self.new_end_points(self.end[0] + displacement, self.end[1])
     
-    def move_left(self, displacement):
-        self.start[0] - displacement
-        self.end[0] - displacement
+    def move_left(self, displacement:int):
+        self.new_start_points(self.start[0] - displacement, self.start[1])
+        self.new_end_points(self.end[0] - displacement, self.end[1])
 
-    def move_up(self, displacement):
-        self.start[1] - displacement
-        self.end[1] - displacement
+    def move_up(self, displacement:int):
+        self.new_start_points(self.start[0], self.start[1] - displacement)
+        self.new_end_points(self.end[0], self.end[1] - displacement)
 
-    def move_down(self, displacement):
-        self.start[1] + displacement
-        self.end[1] + displacement
+    def move_down(self, displacement:int):
+        self.new_start_points(self.start[0], self.start[1] + displacement)
+        self.new_end_points(self.end[0], self.end[1] + displacement)
+
+    def new_start_points(self,new_x, new_y):
+        self.start = [new_x, new_y]
+
+    def new_end_points(self,new_x, new_y):
+        self.end = [new_x, new_y]
 
     def draw(self):
         """Draws the line on the screen"""
@@ -83,39 +95,39 @@ class Line(Shape): # LINE CLASS
 # ----------
 class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
     """A class to draw rectangular shape"""
-    def __init__(self, window:pygame.display, color:tuple, x:int, y:int ,side_width=1, side_length=1, line_width=0):
+    def __init__(self, window:pygame.display, color:tuple, x:int, y:int ,side_width=1, side_height=1, line_width=0):
         """window: The screen or window the shape is meant to be drawn on
         color: tuple of 3 RGB Values (0-255,0-255,0-255)
         x: int value that determines the x-axis placement of the top left vertex of the rectangle (closer to 0: goes left, further from 0 goes right)
         y: int value that determines the y-axis placement of the top left vertex of the rectangle (closer to 0: goes up, further from 0 goes down)
-        side_width: int value that determines how tall the rectangle is (going down from (x,y) coordinate)
-        side_length: int value that determine how long the rectangle goes (going right from (x,y) coordinate)
+        side_height: int value that determines how tall the rectangle is (going down from (x,y) coordinate)
+        side_width: int value that determine how long the rectangle goes (going right from (x,y) coordinate)
         width: This value determines whether the shape has a border | default =0 for no border, filled in"""
         super().__init__(window,color, line_width)
-        self.rect = pygame.Rect(x,y,side_width,side_length)
+        self.rect = pygame.Rect(x,y,side_width,side_height)
 
         self.x = x 
         self.y = y
         self.side_width = side_width
-        self.side_length = side_length
+        self.side_height = side_height
 
-    def change_side_lengths(self, new_width:int, new_length:int):
-        self.rect = pygame.Rect(self.x,self.y,new_width,new_length)
+    def change_side_lengths(self, new_width:int, new_height:int):
+        self.rect = pygame.Rect(self.x,self.y,new_width,new_height)
 
         self.side_width = new_width
-        self.side_length = new_length
+        self.side_height = new_height
 
     def change_side_width(self, new_width:int):
-        self.change_side_lengths(new_width, self.side_length)
+        self.change_side_lengths(new_width, self.side_height)
 
-    def change_side_length(self, new_length:int):
-        self.change_side_lengths(self.side_width, new_length)
+    def change_side_height(self, new_height:int):
+        self.change_side_lengths(self.side_width, new_height)
 
     def change_pos(self,new_x:int,new_y:int):
         self.x = new_x
         self.y = new_y
 
-        self.rect = pygame.Rect(new_x,new_y,self.side_width,self.side_length)
+        self.rect = pygame.Rect(new_x,new_y,self.side_width,self.side_height)
 
     def change_x_pos(self, new_x:int):
         self.change_pos(new_x, self.y)
@@ -137,8 +149,8 @@ class Square(Rectangle): # SQUARE CLASS << RECTANGLE << SHAPES
     def change_side_width(self, new_width:int):
         self.change_side_lengths(new_width, new_width)
 
-    def change_side_length(self, new_length:int):
-        self.change_side_lengths(new_length, new_length)
+    def change_side_height(self, new_height:int):
+        self.change_side_lengths(new_height, new_height)
 # ----------
 class Circ(Shape): # CIRCLE CLASS << SHAPES
     
@@ -168,8 +180,8 @@ class Circ(Shape): # CIRCLE CLASS << SHAPES
 # ----------
 class Ellipse(Rectangle): # ELLIPSE CLASS << RECTANGLE << SHAPES
 
-    def __init__(self, window, color, x, y, side_width=1, side_length=1, line_width = 0):
-        super().__init__(window, color, x, y, side_width, side_length, line_width)
+    def __init__(self, window, color, x, y, side_width=1, side_height=1, line_width = 0):
+        super().__init__(window, color, x, y, side_width, side_height, line_width)
 
     def draw(self):
         pygame.draw.ellipse(self.window, self.color, self.rect, self.width)
