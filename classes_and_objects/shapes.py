@@ -4,13 +4,13 @@ from colors import *
 # AMONG US MAKER
 def draw_amongus(window:pygame.display, color:tuple, x: int, y : int, scale=1, flip= False):
     """haha draw amongus hahahahahahhhahaha"""
-    if flip:
+    if flip: # FLIPPED TRUE: AMONG US FACING LEFT
         amogus_body = Ellipse(window,color, x * scale, y * scale,300 *scale,400 * scale)
         amogus_legs1 = Rectangle(window, color, (x+ 50)* scale, (y+ 300)* scale,50* scale,150* scale)
         amogus_legs2 = Rectangle(window, color, (x+ 200)* scale, (y + 300)* scale,50* scale,150* scale)
         amogus_backpack = Rectangle(window, color, (x + 275)* scale, (y + 50)* scale,75* scale,300* scale)
         glass = Ellipse(window, CC_BLUE, (x-50)* scale, (y+50)* scale ,300* scale,50* scale)
-    else:
+    else: # FLIPPED FALSE: AMONG US FACING RIGHT 
         amogus_body = Ellipse(window,color, x* scale , y* scale,300* scale,400* scale)
         amogus_legs1 = Rectangle(window, color, (x+ 50)* scale, (y+ 300)* scale,50* scale,150* scale)
         amogus_legs2 = Rectangle(window, color, (x+ 200)* scale, (y + 300)* scale,50* scale,150* scale)
@@ -61,33 +61,41 @@ class Line(Shape): # LINE CLASS
         self.start = start_coord
         self.end = end_coord
 
-    def new_start_points(self,new_x, new_y):
+    def new_start_points(self,new_x:int, new_y:int):
+        """Gives the line a new starting point to be on.
+        new_x: int value that represents the new x coordinate for the starting point
+        new_y: int value that represents the new y coordinate for the starting point"""
         self.start = [new_x, new_y]
 
-    def new_end_points(self,new_x, new_y):
+    def new_end_points(self,new_x:int, new_y:int):
+        """Gives the line a new ending point to be on.
+        new_x: int value that represents the new x coordinate for the starting point
+        new_y: int value that represents the new y coordinate for the starting point"""
         self.end = [new_x, new_y]
 
     def move_right(self, displacement:int):
+        """Moves the line to the right by a number of pixels
+        displacement: int value of how many pixels to move the line to the right"""
         self.new_start_points(self.start[0] + displacement, self.start[1])
         self.new_end_points(self.end[0] + displacement, self.end[1])
     
     def move_left(self, displacement:int):
+        """Moves the line to the left by a number of pixels
+        displacement: int value of how many pixels to move the line to the left"""
         self.new_start_points(self.start[0] - displacement, self.start[1])
         self.new_end_points(self.end[0] - displacement, self.end[1])
 
     def move_up(self, displacement:int):
+        """Moves the line up by a number of pixels
+        displacement: int value of how many pixels to move the line up"""
         self.new_start_points(self.start[0], self.start[1] - displacement)
         self.new_end_points(self.end[0], self.end[1] - displacement)
 
     def move_down(self, displacement:int):
+        """Moves the line down by a number of pixels
+        displacement: int value of how many pixels to move the line down"""
         self.new_start_points(self.start[0], self.start[1] + displacement)
         self.new_end_points(self.end[0], self.end[1] + displacement)
-
-    def new_start_points(self,new_x, new_y):
-        self.start = [new_x, new_y]
-
-    def new_end_points(self,new_x, new_y):
-        self.end = [new_x, new_y]
 
     def draw(self):
         """Draws the line on the screen"""
@@ -112,15 +120,22 @@ class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
         self.side_height = side_height
 
     def change_side_lengths(self, new_width:int, new_height:int):
+        """Change the side lengths of the rectangle
+        new_width: sets the width of the rectangle to the new given int value
+        new_height: sets the height of the rectangle to the new given int value"""
         self.rect = pygame.Rect(self.x,self.y,new_width,new_height)
 
         self.side_width = new_width
         self.side_height = new_height
 
     def change_side_width(self, new_width:int):
+        """Change the width of the rectangle
+        new_width: sets the width of the rectangle to the new given int value"""
         self.change_side_lengths(new_width, self.side_height)
 
     def change_side_height(self, new_height:int):
+        """Change the height of the rectangle
+        new_height: sets the height of the rectangle to the new given int value"""
         self.change_side_lengths(self.side_width, new_height)
 
     def change_pos(self,new_x:int,new_y:int):
