@@ -40,6 +40,8 @@ def handle_events():
         if event.type == pygame.QUIT: # QUIT
             return False
     
+    keys = pygame.key.get_pressed()
+
     return True
 
 def main(): # MAIN FUNCTION

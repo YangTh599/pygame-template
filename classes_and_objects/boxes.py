@@ -99,7 +99,7 @@ class Image_box():
         self.y = y
         self.height = height
         self.width = width
-        self.image = pygame.image.load(join('assets','images',image))
+        self.image = pygame.image.load(image).convert()
 
     def draw_image(self):
         self.window.blit(self.image, (self.x, self.y))

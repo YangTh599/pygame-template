@@ -50,6 +50,7 @@ class Shape(): # SHAPES PARENT CLASS
 # ----------
 class Line(Shape): # LINE CLASS
     """A class for a simple line"""
+
     def __init__(self,window:pygame.display, color:tuple, start_coord, end_coord, width=1):
         """window: The screen or window the shape is meant to be drawn on
         color: tuple of 3 RGB Values (0-255,0-255,0-255)
@@ -57,6 +58,7 @@ class Line(Shape): # LINE CLASS
         end_coord: pair of int values the represent (x,y) coordinate points to end the line
         width: This value determines the width of the line in pixels (px)
         """
+
         super().__init__(window, color, width)
         self.start = start_coord
         self.end = end_coord
@@ -65,40 +67,47 @@ class Line(Shape): # LINE CLASS
         """Gives the line a new starting point to be on.
         new_x: int value that represents the new x coordinate for the starting point
         new_y: int value that represents the new y coordinate for the starting point"""
+
         self.start = [new_x, new_y]
 
     def new_end_points(self,new_x:int, new_y:int):
         """Gives the line a new ending point to be on.
         new_x: int value that represents the new x coordinate for the starting point
         new_y: int value that represents the new y coordinate for the starting point"""
+
         self.end = [new_x, new_y]
 
     def move_right(self, displacement:int):
         """Moves the line to the right by a number of pixels
         displacement: int value of how many pixels to move the line to the right"""
+
         self.new_start_points(self.start[0] + displacement, self.start[1])
         self.new_end_points(self.end[0] + displacement, self.end[1])
     
     def move_left(self, displacement:int):
         """Moves the line to the left by a number of pixels
         displacement: int value of how many pixels to move the line to the left"""
+
         self.new_start_points(self.start[0] - displacement, self.start[1])
         self.new_end_points(self.end[0] - displacement, self.end[1])
 
     def move_up(self, displacement:int):
         """Moves the line up by a number of pixels
         displacement: int value of how many pixels to move the line up"""
+
         self.new_start_points(self.start[0], self.start[1] - displacement)
         self.new_end_points(self.end[0], self.end[1] - displacement)
 
     def move_down(self, displacement:int):
         """Moves the line down by a number of pixels
         displacement: int value of how many pixels to move the line down"""
+
         self.new_start_points(self.start[0], self.start[1] + displacement)
         self.new_end_points(self.end[0], self.end[1] + displacement)
 
     def draw(self):
         """Draws the line on the screen"""
+
         pygame.draw.line(self.window,self.color, self.start, self.end, self.width)
 # ----------
 class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
@@ -111,6 +120,7 @@ class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
         side_height: int value that determines how tall the rectangle is (going down from (x,y) coordinate)
         side_width: int value that determine how long the rectangle goes (going right from (x,y) coordinate)
         width: This value determines whether the shape has a border | default =0 for no border, filled in"""
+
         super().__init__(window,color, line_width)
         self.rect = pygame.Rect(x,y,side_width,side_height)
 
@@ -123,6 +133,7 @@ class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
         """Change the side lengths of the rectangle
         new_width: sets the width of the rectangle to the new given int value
         new_height: sets the height of the rectangle to the new given int value"""
+
         self.rect = pygame.Rect(self.x,self.y,new_width,new_height)
 
         self.side_width = new_width
@@ -131,11 +142,13 @@ class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
     def change_side_width(self, new_width:int):
         """Change the width of the rectangle
         new_width: sets the width of the rectangle to the new given int value"""
+
         self.change_side_lengths(new_width, self.side_height)
 
     def change_side_height(self, new_height:int):
         """Change the height of the rectangle
         new_height: sets the height of the rectangle to the new given int value"""
+
         self.change_side_lengths(self.side_width, new_height)
 
     def change_pos(self,new_x:int,new_y:int):
