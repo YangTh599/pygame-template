@@ -36,9 +36,9 @@ class Shape(): # SHAPES PARENT CLASS
     def change_color(self, new_color:tuple):
         """Changes the color of the shape
         new_color: a tuple of 3 ints, 0-255 (ex. (255,255,0))"""
-        if not new_color is tuple:
+        if not isinstance(new_color, tuple):
             raise ValueError("Needs a tuple with 3 int values (0-255, 0-255, 0-255)")
-        if not len(new_color) == 3:
+        if len(new_color) != 3:
             raise ValueError("Tuple need 3 int values in it.")
         
         self.color = new_color
