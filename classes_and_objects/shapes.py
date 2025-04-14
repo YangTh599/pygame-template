@@ -152,6 +152,7 @@ class Rectangle(Shape): # RECTANGLE CLASS << SHAPES
         self.change_side_lengths(self.side_width, new_height)
 
     def change_pos(self,new_x:int,new_y:int):
+        """changes the (x,y) positioning of the rectangle"""
         self.x = new_x
         self.y = new_y
 

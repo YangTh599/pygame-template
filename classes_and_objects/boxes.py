@@ -10,19 +10,21 @@ pygame.init()
 class Text_box():
 
     def __init__(self, window, x, y, width, height, text, text_color = WHITE,rect_color = THAYER_GREEN,font="Comic Sans MS",text_size = 24, draw_rect = True, centered = True, rotation = 0):
-        self.rect = pygame.Rect(x,y,width,height)
+        self.rect = pygame.Rect(x,y,width,height) # TEXTBOX BOX
         self.window = window
 
+        # ----RECTANGLE PROPERTIES----
         self.x = x
         self.y = y
         self.height = height
         self.width = width
 
-        self.draw_rect = draw_rect
-        self.rect_color = rect_color
+        self.draw_rect = draw_rect # BOOLEAN VALUE
+        self.rect_color = rect_color # TEXTBOX RECT COLOR
         self.centered = centered
         self.rotation = rotation
 
+        # -----TEXT PROPERTIES-----
         self.text = text
         self.text_color = text_color
         self.text_size = text_size
@@ -40,14 +42,16 @@ class Text_box():
         self.font = new_font
 
     def change_font_color(self, new_color):
-        if not new_color is tuple:
+        if not isinstance(new_color, tuple):
             raise ValueError("Needs a tuple with 3 int values (0-255, 0-255, 0-255)")
         
         self.text_color = new_color
 
     def change_rect_color(self, new_color):
-        if not new_color is tuple:
+        if not isinstance(new_color, tuple):
             raise ValueError("Needs a tuple with 3 int values (0-255, 0-255, 0-255)")
+        if len(new_color) != 3:
+            raise ValueError("Tuple need 3 int values in it.")
         
         self.rect_color = new_color
 
@@ -103,4 +107,38 @@ class Image_box():
 
     def draw_image(self):
         self.window.blit(self.image, (self.x, self.y))
+
+class Button(Text_box):
+
+    def __init__(self, window, x, y, width, height, text, text_color = WHITE,rect_color = THAYER_GREEN, hover_color = LIME,font="Comic Sans MS",text_size = 24, draw_rect = True, centered = True, rotation = 0):
+        super.__init__(window, x, y, width, height, text, text_color,rect_color,font,text_size, draw_rect, centered, rotation)
+
+        self.hover_color = hover_color
+
+    def change_hover_color(self, new_color):
+        if not isinstance(new_color, tuple):
+            raise ValueError("Needs a tuple with 3 int values (0-255, 0-255, 0-255)")
+        if len(new_color) != 3:
+            raise ValueError("Tuple need 3 int values in it.")
+        
+        self.hover_color = new_color
+
+    def check_hover(self):
+        mouse_pos = pygame.mouse.get_pos()
+
+        if self.rect.collidepoint(mouse_pos):
+            self.change_rect_color(self.hover_color)
+        else:
+            self.change_rect_color(self.rect_color)
+
+    def check_clicked(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect.collidepoint():
+            return True
+        else:
+            return False
+
+
+
+    
 
