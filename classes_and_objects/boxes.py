@@ -124,6 +124,15 @@ class Button(Text_box):
         
         self.hover_color = new_color
 
+    def change_not_hover_color(self, new_color):
+        if not isinstance(new_color, tuple):
+            raise ValueError("Needs a tuple with 3 int values (0-255, 0-255, 0-255)")
+        if len(new_color) != 3:
+            raise ValueError("Tuple need 3 int values in it.")
+        
+        self.not_hover_color = new_color
+        self.rect_color = new_color
+
     def check_hover(self):
         mouse_pos = pygame.mouse.get_pos()
 
