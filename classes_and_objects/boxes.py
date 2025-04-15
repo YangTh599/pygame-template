@@ -114,6 +114,7 @@ class Button(Text_box):
         super.__init__(window, x, y, width, height, text, text_color,rect_color,font,text_size, draw_rect, centered, rotation)
 
         self.hover_color = hover_color
+        self.not_hover_color = rect_color
 
     def change_hover_color(self, new_color):
         if not isinstance(new_color, tuple):
@@ -133,7 +134,7 @@ class Button(Text_box):
 
     def check_clicked(self):
         mouse_pos = pygame.mouse.get_pos()
-        if self.rect.collidepoint():
+        if self.rect.collidepoint(mouse_pos):
             return True
         else:
             return False
