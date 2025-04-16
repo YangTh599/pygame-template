@@ -16,6 +16,7 @@ def init_game():
     pygame.init()
     pygame.font.init()
     pygame.display.set_caption(PYGAME_CAPTION) # Window Caption
+    # pygame.display.set_icon(ICON) #UNCOMMENT WHEN ICON IS DEFINED
 
     #Pygame Window
     window = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
@@ -65,7 +66,7 @@ def main(): # MAIN FUNCTION
         draw(window) # UPDATES SCREEN
 
     pygame.quit()
-    sys.quit()
+    sys.exit()
     quit()
 # ADD CLASSES HERE
 
